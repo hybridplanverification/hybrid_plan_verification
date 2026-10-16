@@ -1,0 +1,203 @@
+phi_EngineExplode:
+
+always[0:50]
+(
+
+(
+(running)
+and
+(acceleration >= 1)
+and
+(velocity >= 100)
+)
+implies
+(
+(not running)
+and
+(engine_blown)
+and
+(acceleration == 0)
+and 
+(abs(running_time - prev_running_time)
+<= 0.0001)
+)
+
+
+)
+
+END
+
+
+phi_Moving:
+
+always[0:50]
+(
+
+(
+(running)
+and
+(process)
+)
+implies
+(
+abs(velocity - prev_velocity)
+<=
+abs(prev_acceleration * dt) + 0.0001
+
+and
+
+abs(displacement - prev_displacement)
+<=
+abs(prev_velocity * dt) + 0.0001
+
+and
+
+abs(running_time - prev_running_time)
+<=
+abs(dt) + 0.0001
+
+)
+
+)
+
+END
+
+
+phi_Acceleration:
+
+always[0:50]
+(
+
+(
+(running)
+and
+(prev_acceleration < upLimit)
+and
+(action_accelerate)
+)
+implies
+(
+(acceleration - prev_acceleration == 1)
+
+and
+ 
+(abs(running_time - prev_running_time)
+<= 0.0001)
+
+)
+
+)
+
+END
+
+
+phi_Deceleration:
+
+always[0:50]
+(
+
+(
+(running)
+and
+(prev_acceleration > downLimit)
+and
+(action_decelerate)
+)
+implies
+(
+(acceleration - prev_acceleration == -1)
+
+)
+
+
+)
+
+END
+
+
+phi_Stop:
+
+always[0:50]
+(
+
+(
+(velocity == 0)
+and
+(displacement >= 30)
+and
+(not engine_blown)
+and
+(action_stop)
+)
+implies
+(
+(goal)
+
+and
+ 
+(abs(running_time - prev_running_time)
+<= 0.0001)
+
+)
+
+
+)
+
+END
+
+
+phi_ActionMutualExclusion:
+
+always[0:50]
+(
+(
+action_accelerate
+or
+action_decelerate
+or
+action_stop
+
+)
+and
+(not(action_accelerate and action_decelerate))
+and
+(not(action_accelerate and action_stop))
+and
+(not(action_decelerate and action_stop))
+)
+
+END
+
+
+phi_Initial_State:
+
+(initial)
+implies
+(
+running
+and
+(running_time == 0)
+and
+(displacement == 0)
+and
+(acceleration == 0)
+and
+(velocity == 0)
+)
+
+END
+
+phi_Goal_State:
+
+eventually[0:50]
+(
+((goal == 1)
+and
+(not engine_blown)
+and
+(running_time <= 50)
+
+)
+
+)
+END
