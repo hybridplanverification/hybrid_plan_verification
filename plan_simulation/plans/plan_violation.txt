@@ -1,0 +1,25 @@
+0: -----waiting---- [10.0]
+10.0: (decelerate)
+10.0: -----waiting---- [12.0]
+12.0: (accelerate)
+12.0: -----waiting---- [14.0]
+14.0: (decelerate)
+14.0: -----waiting---- [25.0]
+25.0: (accelerate)
+25.0: (accelerate)
+25.0: (accelerate)
+25.0: -----waiting---- [30.0]
+30.0: (decelerate)
+30.0: -----waiting---- [31.0]
+31.0: (accelerate)
+31.0: -----waiting---- [32.0]
+32.0: (decelerate)
+32.0: (decelerate)
+32.0: (decelerate)
+32.0: -----waiting---- [33.0]
+33.0: (accelerate)
+33.0: -----waiting---- [34.0]
+34.0: (decelerate)
+34.0: -----waiting---- [39.0]
+39.0: (accelerate)
+39.0: (stop)
