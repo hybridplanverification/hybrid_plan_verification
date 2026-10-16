@@ -18,8 +18,8 @@ The project especially gives the simple illustration of verification of plan gen
 ## Installation
 * project usage
 ```
-git clone <https://gitlab.com/anonymous2275/Hybrid-Plan-Verification>
-cd <Hybrid-Plan-Verification>
+git clone <https://github.com/hybridplanverification/hybrid_plan_verification>
+cd <hybrid_plan_verification>
 ```
 * Install python3
 ```
